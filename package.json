@@ -12,6 +12,7 @@
     "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/tough-cookie": "^4.0.5",
+    "apexcharts": "^3.35.0",
     "autoprefixer": "^10",
     "axios": "^1.7.7",
     "axios-cookiejar-support": "^5.0.2",
