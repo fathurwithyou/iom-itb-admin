@@ -23,6 +23,8 @@ import { FETCH_JWT } from "@/store/auth.module";
 import DanaBantuan from "@/views/DanaBantuan.vue";
 import PengajuanBantuan from "@/views/PengajuanBantuanView.vue";
 import OrangtuaAsuh from "@/views/OrangtuaAsuhView.vue";
+import Kemitraan from "@/views/KemitraanView.vue";
+import KegiatanKemitraan from "@/views/KegiatanKemitraanView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -78,12 +80,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/10-donasi-terakhir",
+    redirect: "/donasi",
+  },
+  {
+    path: "/donasi",
     name: "Donasi Trakhir",
     component: DonasiTerakhir,
   },
   {
-    path: "/donasi",
-    name: "Donasi",
+    path: "/donasi-unused",
+    name: "Donasi (temporarily unused)",
     component: Donasi,
   },
   {
@@ -97,14 +103,19 @@ const routes: Array<RouteRecordRaw> = [
     component: OrangtuaAsuh,
   },
   {
+    path: "/kemitraan",
+    name: "Kemitraan",
+    component: Kemitraan,
+  },
+  {
+    path: "/kegiatan-kemitraan",
+    name: "Kegiatan Kemitraan",
+    component: KegiatanKemitraan,
+  },
+  {
     path: "/pengajuan-bantuan",
     name: "Pengajuan Bantuan",
     component: PengajuanBantuan,
-  },
-  {
-    path: "/pendataan-anggota",
-    name: "Pendataan Anggota",
-    component: PendataanAnggota,
   },
   {
     path: "/pendataan-anggota",
