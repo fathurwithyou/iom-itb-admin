@@ -79,6 +79,10 @@ const routes: Array<RouteRecordRaw> = [
     component: Members,
   },
   {
+    path: "/10-donasi-terakhir",
+    redirect: "/donasi",
+  },
+  {
     path: "/donasi",
     name: "Donasi Trakhir",
     component: DonasiTerakhir,
@@ -112,11 +116,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/pengajuan-bantuan",
     name: "Pengajuan Bantuan",
     component: PengajuanBantuan,
-  },
-  {
-    path: "/pendataan-anggota",
-    name: "Pendataan Anggota",
-    component: PendataanAnggota,
   },
   {
     path: "/pendataan-anggota",

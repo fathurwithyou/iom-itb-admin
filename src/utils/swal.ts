@@ -1,5 +1,13 @@
 import Swal from 'sweetalert2';
 
+const escapeHtml = (str: string): string =>
+  str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
 const warningIconHtml = `
   <div style="background-color:#ef4444;border-radius:50%;width:7.5rem;height:7.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style="width:4.5rem;height:4.5rem">
@@ -9,8 +17,8 @@ const warningIconHtml = `
 
 export const showError = (title: string, messages: string | string[]) => {
   const html = Array.isArray(messages)
-    ? `<ul style="text-align:left;padding-left:1.25rem;margin:0;color:#374151">${messages.map(m => `<li>${m}</li>`).join('')}</ul>`
-    : `<p style="color:#374151;margin:0">${messages}</p>`;
+    ? `<ul style="text-align:left;padding-left:1.25rem;margin:0;color:#374151">${messages.map(m => `<li>${escapeHtml(m)}</li>`).join('')}</ul>`
+    : `<p style="color:#374151;margin:0">${escapeHtml(messages)}</p>`;
 
   return Swal.fire({
     iconHtml: warningIconHtml,

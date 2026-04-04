@@ -125,7 +125,9 @@ export default defineComponent({
       if (link && link.trim() !== '') {
         try {
           const url = new URL(link);
-          if (!url.hostname.includes('itbpress.id')) {
+          const hostname = url.hostname.toLowerCase().replace(/\.$/, '');
+          const isItbPressDomain = hostname === 'itbpress.id' || hostname.endsWith('.itbpress.id');
+          if (!isItbPressDomain) {
             errors.push('Link harus menggunakan domain ITB Press (itbpress.id).');
           }
         } catch {

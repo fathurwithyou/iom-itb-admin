@@ -17,16 +17,29 @@ interface KegiatanKemitraan {
     image: string;
 }
 
+interface Pagination {
+    start: number;
+    end: number;
+    totalEntries: number;
+    currentPage: number;
+    totalPages: number;
+}
+
+interface PaginatedKegiatanKemitraan {
+    data: KegiatanKemitraan[];
+    pagination: Pagination;
+}
+
 interface State {
-    kegiatanKemitraans: KegiatanKemitraan[];
+    kegiatanKemitraans: PaginatedKegiatanKemitraan | null;
 }
 
 const state: State = {
-    kegiatanKemitraans: [],
+    kegiatanKemitraans: null,
 };
 
 const getters = {
-    kegiatanKemitraans(state: State): KegiatanKemitraan[] {
+    kegiatanKemitraans(state: State): PaginatedKegiatanKemitraan | null {
         return state.kegiatanKemitraans;
     },
 };
@@ -71,7 +84,7 @@ const actions = {
 };
 
 const mutations = {
-    [SET_KEGIATAN_KEMITRAANS](state: State, data: KegiatanKemitraan[]): void {
+    [SET_KEGIATAN_KEMITRAANS](state: State, data: PaginatedKegiatanKemitraan): void {
         state.kegiatanKemitraans = data;
     },
 };

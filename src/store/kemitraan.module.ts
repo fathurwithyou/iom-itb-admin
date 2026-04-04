@@ -15,16 +15,29 @@ interface Kemitraan {
     mou: string;
 }
 
+interface Pagination {
+    start: number;
+    end: number;
+    totalEntries: number;
+    currentPage: number;
+    totalPages: number;
+}
+
+interface PaginatedKemitraan {
+    data: Kemitraan[];
+    pagination: Pagination;
+}
+
 interface State {
-    kemitraans: Kemitraan[];
+    kemitraans: PaginatedKemitraan | null;
 }
 
 const state: State = {
-    kemitraans: [],
+    kemitraans: null,
 };
 
 const getters = {
-    kemitraans(state: State): Kemitraan[] {
+    kemitraans(state: State): PaginatedKemitraan | null {
         return state.kemitraans;
     },
 };
@@ -69,7 +82,7 @@ const actions = {
 };
 
 const mutations = {
-    [SET_KEMITRAANS](state: State, data: Kemitraan[]): void {
+    [SET_KEMITRAANS](state: State, data: PaginatedKemitraan): void {
         state.kemitraans = data;
     },
 };

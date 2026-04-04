@@ -80,7 +80,7 @@
                 <tr v-if="isLoading">
                   <td colspan="20" class="px-5 py-5 text-sm bg-white border-b border-gray-200">Loading...</td>
                 </tr>
-                <tr v-else v-for="(item, index) in computedData" :key="index">
+                <tr v-else v-for="(item, index) in computedData" :key="item.id">
                   <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                     <div class="flex items-center">
                       <div class="flex-shrink-0 w-10 h-10">
@@ -150,6 +150,7 @@ import ModalForm from "../components/modal/FormKegiatanKemitraan.vue";
 import { useStore } from 'vuex';
 import Breadcrumb from '../partials/AppBreadcrumb.vue';
 import Swal from 'sweetalert2';
+import { showError } from '@/utils/swal';
 import IcTrash from '@/assets/svg/ic-trash.vue';
 import IcEdit from '@/assets/svg/ic-edit.vue';
 import IcPlus from '@/assets/svg/ic-plus.vue';
@@ -216,16 +217,19 @@ const deleteItem = async (id: number) => {
     confirmButtonText: 'Yes, delete it!'
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await store.dispatch(DELETE_KEGIATAN_KEMITRAAN, { id });
       try {
-        Swal.fire({
+        await store.dispatch(DELETE_KEGIATAN_KEMITRAAN, { id });
+        await Swal.fire({
           title: "Deleted!",
           text: "Your item has been deleted.",
           icon: "success",
           confirmButtonColor: '#4CAF50',
           confirmButtonText: "OK"
-        }).then(async () => { await getData(); });
-      } catch (err) { console.log(err); }
+        });
+        await getData();
+      } catch (err: any) {
+        showError('Error', err?.response?.data?.message || 'Gagal menghapus data, coba lagi.');
+      }
     }
   });
 };
