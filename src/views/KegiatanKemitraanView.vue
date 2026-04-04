@@ -80,7 +80,7 @@
                 <tr v-if="isLoading">
                   <td colspan="20" class="px-5 py-5 text-sm bg-white border-b border-gray-200">Loading...</td>
                 </tr>
-                <tr v-else v-for="(item, index) in computedData" :key="item.id">
+                <tr v-else v-for="item in computedData" :key="item.id">
                   <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                     <div class="flex items-center">
                       <div class="flex-shrink-0 w-10 h-10">
