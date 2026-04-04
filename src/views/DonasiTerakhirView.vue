@@ -418,7 +418,7 @@ const limit = ref(10);
 const search = ref("");
 const orderBy = ref("date");
 const sort = ref("DESC");
-const title = ref("10 Donasi Terakhir");
+const title = ref("Donasi");
 
 const openModal = () => {
   isOpened.value = true; // Open the modal
@@ -513,19 +513,25 @@ const deleteItem = async (id: number) => {
   }).then(async (result) => {
           if (result.isConfirmed) {
             const params = { id: id };
-            await store.dispatch(DELETE_DONATION, params);
             try {
+              await store.dispatch(DELETE_DONATION, params);
               Swal.fire({
                 title: "Deleted!",
                 text: "Your item has been deleted.",
                 icon: "success",
-                confirmButtonColor: '#4CAF50',  // Change the color of the "OK" button
+                confirmButtonColor: '#4CAF50',
                 confirmButtonText: "OK"
               }).then(async () => {
                 await getData();
               });
-            } catch (err) {
-              console.log(err);
+            } catch (err: any) {
+              Swal.fire({
+                title: "Error!",
+                text: err?.response?.data?.message || "Gagal menghapus data.",
+                icon: "error",
+                confirmButtonColor: '#d33',
+                confirmButtonText: "OK"
+              });
             }
           }
         });

@@ -181,7 +181,10 @@
                   <td
                     class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                   >
-                    <p class="text-gray-900 whitespace-nowrap">{{ u?.stock }}</p>
+                    <p :class="u?.stock < 5 ? 'text-red-600 font-semibold' : 'text-gray-900'" class="whitespace-nowrap">
+                      {{ u?.stock }}
+                      <span v-if="u?.stock < 5" class="ml-1 text-xs">(stok menipis)</span>
+                    </p>
                   </td>
                   <td
                     class="px-5 py-5 text-sm bg-white border-b border-gray-200"
@@ -362,9 +365,13 @@ const deleteItem = async (id: number) => {
     text: "You won't be able to revert this!",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonColor: '#ef4444',
+    cancelButtonColor: '#e5e7eb',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
+    customClass: {
+      cancelButton: 'swal-cancel-btn',
+    },
   }).then(async (result) => {
           if (result.isConfirmed) {
             const params = { id: id };
