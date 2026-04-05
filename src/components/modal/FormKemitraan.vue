@@ -14,7 +14,7 @@
           </div>
 
           <div class="px-5 py-6 text-gray-700 bg-gray-200 border-b max-h-[80vh] overflow-y-scroll">
-            <InputText label="Judul" keyValue="title" :value="data?.title" @update="updateValue" />
+            <InputText label="Judul" keyValue="name" :value="data?.name" @update="updateValue" />
             <InputTextArea label="Deskripsi" keyValue="description" :value="data?.description" @update="updateValue" />
             <InputImageCostume label="Gambar" keyValue="image" :value="data?.image || ''" @update="updateValue" />
 
