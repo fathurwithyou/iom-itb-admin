@@ -24,7 +24,7 @@
                 @change="onKemitraanChange"
               >
                 <option value="" disabled>-- Pilih Kemitraan --</option>
-                <option v-for="k in kemitraanList" :key="k.id" :value="k.id">{{ k.title }}</option>
+                <option v-for="k in kemitraanList" :key="k.id" :value="k.id">{{ k.name }}</option>
               </select>
             </div>
 
